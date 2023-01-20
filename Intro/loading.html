@@ -27,13 +27,13 @@
 </style>
 <body>
     <div id="video">
-        <video id="cast" src="https://as11.asset.aparat.com/aparat-video/ed9d4401893486c8ae020a1e30fbb6dc14727135-720p.mp4?wmsAuthSign=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbiI6ImZlOTE0NGY2MDY4M2ZmYTdhYjMwY2Q3MzNiZjczNzBkIiwiZXhwIjoxNjc0MjY3NTI2LCJpc3MiOiJTYWJhIElkZWEgR1NJRyJ9.nOWZya_IyGRxGUH08P_oBheaZ1grxuG6kxD05VLG0FI" controls autoplay>
+        <video id="cast" src="./loading.MP4" controls autoplay>
 
         </video>
     </div>
     <script>
         function nextPage(){
-            window.location.replace('https://google.com');
+            window.location.replace('../WorldWar2/demo/html/test.html');
         }
         const media = document.querySelector('video');
         media.addEventListener('ended', nextPage);

@@ -43,7 +43,7 @@
 }
 div.popup {
   width: 30vw;
-  height: 85vh;
+  height: 70vh;
   position: absolute;
   top: 10vh;
   bottom: 10vh;
@@ -67,7 +67,10 @@ div.popup {
 .country_dep:hover{
     cursor: pointer;
 }
-#diplomacy_ul {
+#diplomacy_ul, #manpower_ul {
   overflow-y: auto;
-  height: 100%;
+  height: 90%;
+}
+#svgMapEuroCurrency{
+  height: 88vh;
 }

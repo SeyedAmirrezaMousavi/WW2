@@ -5,7 +5,7 @@
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    
+
 
     <script src="./svg-pan-zoom.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -33,11 +33,16 @@
               <img src="./img/man_power.png" alt="">
               <h2 id="manpower_h2">1340000</h2>
             </li>
+            <li id="factory">
+              <img src="./img/factory.png" alt="">
+              <h2 id="factory_h2"></h2>
+            </li>
             <li id="diplomacy" onclick="diplomacy_btn()"><img src="./img/deplomacy.png" alt=""><h2>diplomacy</h2></li>
             <li id="trade" onclick="trade_btn()"><img src="./img/trade.png" alt=""><h2>trade</h2></li>
-            <li id="construction"><img src="./img/cons.png" alt=""><h2>construction</h2></li>
+            <li id="construction" onclick="makeFactory()"><img src="./img/cons.png" alt=""><h2>construction</h2></li>
             <!-- <li id="production"><img src="./img/production.png" alt=""><h2>production</h2></li> -->
-            <li id="recruit_and_deploy"><img src="./img/deploy.png" alt=""><h2>recruit & deploy</h2></li>
+            <li id="recruit_and_deploy" onclick="deploy()"><img src="./img/deploy.png" alt=""><h2>recruit & deploy</h2></li>
+            <li id="war" onclick="manpower_btn()"><img src="./img/war.png" alt=""><h2>declare war</h2></li>
           </ul>
         </div>
         <div class="popup" id="diplomacy_shower">
@@ -56,13 +61,23 @@
             close
             </span></h5>
             <ul id="trade_ul">
-              <h2 class="manba">aluminium</h2>
-              <h2 class="manba">tungsten</h2>
-              <h2 class="manba">oil</h2>
-              <h2 class="manba">steel</h2>
-              <h2 class="manba">chromium</h2>
+              <h2 id="al" class="manba">aluminium</h2>
+              <h2 id="tu" class="manba">tungsten</h2>
+              <h2 id="oi" class="manba">oil</h2>
+              <h2 id="st" class="manba">steel</h2>
+              <h2 id="ch" class="manba">chromium</h2>
             </ul>
           <ul id="country_trades">
+
+          </ul>
+        </div>
+
+        <div class="popup" id="manpower_shower">
+          <h5 class="popup" onclick="manpower_btn()">
+            <span class="material-symbols-outlined">
+            close
+            </span></h5>
+          <ul id="manpower_ul">
 
           </ul>
         </div>

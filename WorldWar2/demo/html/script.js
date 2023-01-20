@@ -159,6 +159,7 @@ var svgMapEuroCurrency = new svgMap({
     Object.getPrototypeOf(svgMapEuroCurrency).hoi[winner].oil += Object.getPrototypeOf(svgMapEuroCurrency).hoi[looser].oil
     Object.getPrototypeOf(svgMapEuroCurrency).hoi[winner].tungsten += Object.getPrototypeOf(svgMapEuroCurrency).hoi[looser].tungsten
 
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi[winner] = Object.getPrototypeOf(svgMapEuroCurrency).hoi[winner] + 2400000
     Object.getPrototypeOf(svgMapEuroCurrency).hoi[winner].manpower += Object.getPrototypeOf(svgMapEuroCurrency).hoi[looser].manpower
     
     Object.getPrototypeOf(svgMapEuroCurrency).hoi[looser].tungsten = 0
@@ -169,17 +170,18 @@ var svgMapEuroCurrency = new svgMap({
     Object.getPrototypeOf(svgMapEuroCurrency).hoi[looser].manpower = 0
 
 
+
     localStorage.setItem("paths",JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).mapPaths)) 
     localStorage.setItem('hoi',JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).hoi))
     location.reload()
   }
   function improve_relation(country){
-    console.log(Object.getPrototypeOf(svgMapEuroCurrency).hoi[country])
+    if(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].pp >= 10){
     Object.getPrototypeOf(svgMapEuroCurrency).hoi[country].about_them_opinion = Object.getPrototypeOf(svgMapEuroCurrency).hoi[country].about_them_opinion + 15
     Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].pp = Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].pp - 10
     localStorage.setItem('hoi',JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).hoi))
     location.reload()
-  }
+  }}
   
   function trade(toTrade, country, much){
     (Object.getPrototypeOf(svgMapEuroCurrency).hoi[country])[toTrade] -= much
@@ -189,24 +191,32 @@ var svgMapEuroCurrency = new svgMap({
     location.reload()
   }
 
-  function makeFactory(type){
-    (Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE)[type] += 1
-    (Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE).gold -= 100000
+  function makeFactory(){
+    if ((Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE).gold >= 350000 && Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.aluminium >= 1 && Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.oil >= 1 && Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.seel >= 1 && Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.tungsten >= 1 && Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.chromium >= 1)
+    (Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE)['cf'] = (Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE)['cf'] + 1
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.gold -=  350000
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.aluminium = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.aluminium - 1
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.tungsten = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.tungsten - 1
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.oil = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.oil - 1
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.steel = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.steel - 1
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.chromium = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.chromium - 1
     localStorage.setItem('hoi',JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).hoi))
     location.reload()
   }
   function product(){}
 
   function deploy(){
+    if(Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.gold >= 100000){
     Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.manpower = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.manpower + 100000
     Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.gold = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.gold - 100000
     localStorage.setItem('hoi',JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).hoi))
     location.reload()
-  }
+  }}
 
   document.getElementById('manpower_h2').innerHTML = Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].manpower
-  document.getElementById('coin').innerHTML = Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].manpower
+  document.getElementById('coin').innerHTML = Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].gold
   document.getElementById('pp').innerHTML = Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].pp
+  document.getElementById('factory_h2').innerHTML = Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].cf
 
 
 
@@ -215,23 +225,46 @@ var svgMapEuroCurrency = new svgMap({
 
   let key = ''
   let countries = ''
-  let keys = Object.keys(Object.getPrototypeOf(svgMapEuroCurrency)['countries'])
-  let values = Object.values(Object.getPrototypeOf(svgMapEuroCurrency)['countries'])
+  let keys = Object.keys(Object.getPrototypeOf(svgMapEuroCurrency)['hoi'])
   let op = ''
   
   for(let i = 0; i != keys.length; i++ ){
     key = keys[i]
     op = Object.getPrototypeOf(svgMapEuroCurrency).hoi[key]
     // console.log(op)
-    // op = op['about_them_opinion']
+    op = op['about_them_opinion']
     op = String(op)
+    if(key == 'DE'){
+      continue;
+    }
     countries += `<li class = "country_dep" onclick='improve_relation("${key}")'>` 
-    countries += '<h2>' + values[i]+'</h2>'
+    countries += '<h2>' + Object.getPrototypeOf(svgMapEuroCurrency).countries[key]+'   ' + op+'</h2>'
     countries += '</li>'
   }
   document.getElementById('diplomacy_ul').innerHTML = countries
 
-
+  let country_code = ''
+  let manpowers = ''
+  let country_codes = Object.keys(Object.getPrototypeOf(svgMapEuroCurrency)['hoi'])
+  let mn = ''
+  
+  for(let i = 0; i != country_codes.length; i++ ){
+    country_code = country_codes[i]
+    if(country_code == 'DE'){
+      continue;
+    }
+    mn = Object.getPrototypeOf(svgMapEuroCurrency).hoi[country_code]
+    // console.log(mn)
+    mn = mn.manpower
+    if(mn == 0){
+      continue;
+    }
+    mn = String(mn)
+    manpowers += `<li class = "country_dep" onclick='war("DE","${country_code}")'>` 
+    manpowers += '<h2>' + Object.getPrototypeOf(svgMapEuroCurrency).countries[country_code]+'   ' + mn+'</h2>'
+    manpowers += '</li>'
+  }
+  document.getElementById('manpower_ul').innerHTML = manpowers
 
 
   let diplomacy_clicked = 0;
@@ -239,8 +272,8 @@ var svgMapEuroCurrency = new svgMap({
   let construction_clicked = 0;
   let production_clicked = 0;
   let deploy_clicked = 0;
+  let manpower_clicked = 0;
   function diplomacy_btn(){
-    console.log('harz?')
     diplomacy_clicked += 1
     if (diplomacy_clicked % 2 == 0){
         document.getElementById('diplomacy_shower').style.display = 'none'
@@ -258,3 +291,59 @@ var svgMapEuroCurrency = new svgMap({
         document.getElementById('trade_shower').style.display = 'block'
     }
   }
+
+  function manpower_btn(){
+    manpower_clicked += 1
+    if (manpower_clicked % 2 == 0){
+        document.getElementById('manpower_shower').style.display = 'none'
+    }
+    else{
+        document.getElementById('manpower_shower').style.display = 'block'
+    }
+  }
+
+
+
+  function war(fCountry, sCountry){
+    if(Object.getPrototypeOf(svgMapEuroCurrency).hoi[fCountry].manpower >= Object.getPrototypeOf(svgMapEuroCurrency).hoi[sCountry].manpower){
+      win_war(fCountry, sCountry)
+    }
+    else{
+      win_war(sCountry, fCountry)
+    }
+  }
+
+  document.getElementById('al').innerHTML = 'aluminium    ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].aluminium)
+  document.getElementById('tu').innerHTML = 'tungsten   ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].tungsten)
+  document.getElementById('oi').innerHTML = 'oil    ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].oil)
+  document.getElementById('st').innerHTML = 'steel    ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].steel)
+  document.getElementById('ch').innerHTML = 'chromium   ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].chromium)
+  function trading(type){
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE[type] = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE[type] + 1
+  }
+  function minute_pass(){
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.pp +=  100
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.gold +=  (Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.cf * 10000)
+    let countries = Object.keys(Object.getPrototypeOf(svgMapEuroCurrency).hoi)
+    for(let i = 0; i != countries.length; i++){
+      if(countries[i] == 'DE'){
+        continue;
+      }
+      Object.getPrototypeOf(svgMapEuroCurrency).hoi[countries[i]].about_them_opinion -= 5
+      if(Object.getPrototypeOf(svgMapEuroCurrency).hoi[countries[i]].about_them_opinion <= -50){
+        war('DE', countries[i])
+      }
+    }
+    
+    localStorage.setItem('hoi',JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).hoi))
+    setTimeout(minute_pass, 60000)
+    
+  }
+  minute_pass()
+
+
+
+
+
+
+
