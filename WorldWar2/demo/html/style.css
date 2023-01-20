@@ -1,0 +1,73 @@
+@font-face {
+  font-family: hitler;
+  src: url(./asset/Ubuntu-Bold.ttf);
+}
+#panel {
+  display: flex;
+  position: absolute;
+  top: 0;
+  height: 12vh;
+  width: 100vw;
+  background-color: #ecf0f1;
+}
+#panel ul {
+  display: grid;
+  grid-template-columns: repeat(9, 1fr);
+  margin: 0px;
+}
+#panel li {
+  overflow: hidden;
+  margin: auto 0px;
+}
+#panel ul li img {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  text-align: center;
+  margin: auto;
+  margin-bottom: 5px;
+}
+#panel ul li h2 {
+  font-family: hitler;
+  font-size: 16px;
+  color: black;
+  text-align: center;
+  margin: auto;
+}
+#panel #power div {
+  display: flex;
+  margin: auto;
+  width: 33%;
+  height: 100%;
+}
+div.popup {
+  width: 30vw;
+  height: 85vh;
+  position: absolute;
+  top: 10vh;
+  bottom: 10vh;
+  left: 30vw;
+  right: 30vw;
+  background: #95a5a6;
+  border-radius: 25px;
+  display: none;
+}
+.popup h5{
+    margin: 0px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.popup h5:hover , #panel li{
+    cursor: pointer;
+}
+.country_dep {
+  overflow: hidden;
+}
+.country_dep:hover{
+    cursor: pointer;
+}
+#diplomacy_ul {
+  overflow-y: auto;
+  height: 100%;
+}

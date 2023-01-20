@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>svgMap HTML demos</title>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+
+    <script src="./svg-pan-zoom.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <link href="./demo.css" rel="stylesheet" />
+    <link rel="stylesheet" href="./style.css">
+    <link href="../../dist/svgMap.css" rel="stylesheet" />
+    <script src="../../dist/svgMap.js"></script>
+
+  </head>
+<!-- 150000 -->
+  <body>
+        
+        <div id="svgMapEuroCurrency"></div>
+        <div id="panel">
+          <ul>
+            <li id="gold">
+              <img src="./img/gold.png" alt="">
+              <h2 id="coin">2400000</h2>
+            </li>
+            <li id="political_power">
+              <img src="./img/poli.png" alt="">
+              <h2 id="pp">3</h2>
+            </li>
+            <li id="man_power">
+              <img src="./img/man_power.png" alt="">
+              <h2 id="manpower_h2">1340000</h2>
+            </li>
+            <li id="diplomacy" onclick="diplomacy_btn()"><img src="./img/deplomacy.png" alt=""><h2>diplomacy</h2></li>
+            <li id="trade" onclick="trade_btn()"><img src="./img/trade.png" alt=""><h2>trade</h2></li>
+            <li id="construction"><img src="./img/cons.png" alt=""><h2>construction</h2></li>
+            <!-- <li id="production"><img src="./img/production.png" alt=""><h2>production</h2></li> -->
+            <li id="recruit_and_deploy"><img src="./img/deploy.png" alt=""><h2>recruit & deploy</h2></li>
+          </ul>
+        </div>
+        <div class="popup" id="diplomacy_shower">
+          <h5 class="popup" onclick="diplomacy_btn()">
+            <span class="material-symbols-outlined">
+            close
+            </span></h5>
+          <ul id="diplomacy_ul">
+
+          </ul>
+        </div>
+
+        <div class="popup" id="trade_shower">
+          <h5 onclick="trade_btn()">
+            <span class="material-symbols-outlined">
+            close
+            </span></h5>
+            <ul id="trade_ul">
+              <h2 class="manba">aluminium</h2>
+              <h2 class="manba">tungsten</h2>
+              <h2 class="manba">oil</h2>
+              <h2 class="manba">steel</h2>
+              <h2 class="manba">chromium</h2>
+            </ul>
+          <ul id="country_trades">
+
+          </ul>
+        </div>
+        <script src="./script.js"></script>
+      </div>
+    </div>
+  </body>
+</html>

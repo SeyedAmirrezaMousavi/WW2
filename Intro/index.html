@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+    }
+    #video{
+        width: 100vw;
+        height: 100vh;
+        object-fit: contain;
+        margin: 0px;
+        text-align: center;
+    }
+    #video video{
+        object-fit: contain;
+        width: 95%;
+        height: 95%;
+        margin: 0px;
+        
+    }
+</style>
+<body>
+    <div id="video">
+        <video id="cast" src="./e96dc8a5b17f094b2d75c34bd2f22b9014126280-480p.mp4" controls autoplay>
+
+        </video>
+    </div>
+    <script>
+        function nextPage(){
+            window.location.replace('https://google.com');
+        }
+        const media = document.querySelector('video');
+        media.addEventListener('ended', nextPage);
+    </script>
+</body>
+</html>
