@@ -148,6 +148,9 @@ var svgMapEuroCurrency = new svgMap({
   });
   
   function win_war(winner, looser){
+    if(looser == 'DE'){
+      window.location.replace('../../../../Games/index.html');
+    }
     // svgMapEuroCurrency.Prototype.mapPaths.winner.d +=  ' '
     PT = Object.getPrototypeOf(svgMapEuroCurrency)
     Object.getPrototypeOf(svgMapEuroCurrency).mapPaths[winner].d += ' ' + Object.getPrototypeOf(svgMapEuroCurrency).mapPaths[looser].d 
@@ -318,8 +321,12 @@ var svgMapEuroCurrency = new svgMap({
   document.getElementById('oi').innerHTML = 'oil    ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].oil)
   document.getElementById('st').innerHTML = 'steel    ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].steel)
   document.getElementById('ch').innerHTML = 'chromium   ' + String(Object.getPrototypeOf(svgMapEuroCurrency).hoi['DE'].chromium)
+
   function trading(type){
-    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE[type] = Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE[type] + 1
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE[type] += 1
+    Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.gold -= 100000
+    localStorage.setItem('hoi',JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).hoi))
+    location.reload()
   }
   function minute_pass(){
     Object.getPrototypeOf(svgMapEuroCurrency).hoi.DE.pp +=  100
@@ -336,7 +343,7 @@ var svgMapEuroCurrency = new svgMap({
     }
     
     localStorage.setItem('hoi',JSON.stringify(Object.getPrototypeOf(svgMapEuroCurrency).hoi))
-    setTimeout(minute_pass, 60000)
+    setTimeout(minute_pass, 300000)
     
   }
   minute_pass()
